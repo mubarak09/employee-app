@@ -24,6 +24,14 @@ fun main(args: Array<String>) {
 
     println("\nPayslip with Rounding")
     printPaySlipRounding()
+
+    // Call calculation functions
+
+    println("Monthly Salary: ${getMonthlySalary()}")
+    println("Monthly PAYE: ${getMonthlyPAYE()}")
+    println("Monthly PRSI: ${getMonthlyPRSI()}")
+    println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
+    println("Monthly Deductions: ${getTotalMonthlyDeductions()}")
 }
 
 // Functions for calculations
@@ -32,8 +40,6 @@ fun getMonthlyPAYE() = (getMonthlySalary() * (payePercentage/100))
 fun getMonthlyPRSI() = (getMonthlySalary() * (prsiPercentage/100))
 fun getGrossMonthlyPay() = (getMonthlySalary() + (annualBonus /12))
 fun getTotalMonthlyDeductions() = (getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkSchemeMonthly)
-fun getNetMonthlyPay() = (getGrossMonthlyPay() - getTotalMonthlyDeductions())
-fun getGrossPay() = (getMonthlySalary() + (annualBonus/12))
 
 // Function to format decimal places to 2.
 fun formatted(doubleToFormat: Double): BigDecimal? {
@@ -56,7 +62,7 @@ fun printPaySlip(): Unit {
                    PRSI: ${getMonthlyPRSI()} 
                    Cycle To Work: $cycleToWorkSchemeMonthly        
         +____________________________________________________________________+
-             NET PAY: ${(getGrossPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly))}
+             NET PAY: ${(getGrossMonthlyPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly))}
         +____________________________________________________________________+"""
             )
 }
@@ -79,6 +85,6 @@ fun printPaySlipRounding(): Unit {
     println("|----------------------------------------------------------------------------|")
     println("|   Gross: ${formatted(getGrossMonthlyPay())}             Total Deductions: ${formatted(getTotalMonthlyDeductions())}                     |")
     println("|----------------------------------------------------------------------------|")
-    println("|                          NET PAY:    ${formatted((getGrossPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly)))}                               |")
+    println("|                          NET PAY:    ${formatted((getGrossMonthlyPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly)))}                               |")
     println("|----------------------------------------------------------------------------|")
 }
