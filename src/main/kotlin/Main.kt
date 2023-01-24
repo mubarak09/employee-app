@@ -11,7 +11,14 @@ val prsiPercentage: Float = 5.2f
 val annualBonus: Double = 1450.50
 val cycleToWorkSchemeMonthly: Double = 54.33
 
+fun getFullName() = when(gender) {
+    'm' -> "Mr $firstName $surName"
+    'f' -> "Ms $firstName $surName"
+    else -> "$firstName $surName"
+}
+
 fun main(args: Array<String>) {
+    println(getFullName())
     println("Paylist Printer")
     printPaySlip()
 
@@ -36,7 +43,7 @@ fun printPaySlip(): Unit {
     println(
             """
         +____________________________________________________________________+
-         Monthly Payslip:             ${firstName.uppercase()} ${surName.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+         Monthly Payslip:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
         +____________________________________________________________________+    
               PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
         +____________________________________________________________________+
@@ -59,7 +66,7 @@ fun printPaySlipRounding(): Unit {
     println("|                              Monthly Payslip                               |")
     println("|----------------------------------------------------------------------------|")
     println("|                                                                            |")
-    println("|   Employee Name: ${firstName.uppercase()} ${surName.uppercase()} (${gender.uppercase()})                Employee ID: $employeeID             |")
+    println("|   Employee Name: ${getFullName().uppercase()} (${gender.uppercase()})                Employee ID: $employeeID             |")
     println("|                                                                            |")
     println("|----------------------------------------------------------------------------|")
     println("|                                                                            |")
