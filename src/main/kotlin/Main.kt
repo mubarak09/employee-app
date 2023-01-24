@@ -32,27 +32,26 @@ fun getGrossPay() = (getMonthlySalary() + (annualBonus/12))
 fun formatted(doubleToFormat: Double): BigDecimal? {
     return BigDecimal(doubleToFormat).setScale(2, RoundingMode.HALF_EVEN)
 }
-
 fun printPaySlip(): Unit {
-    println("------------------------------------------------------------------------------")
-    println("|                              Monthly Payslip                               |")
-    println("|----------------------------------------------------------------------------|")
-    println("|                                                                            |")
-    println("|   Employee Name: ${firstName.uppercase()} ${surName.uppercase()} (${gender.uppercase()})                Employee ID: $employeeID             |")
-    println("|                                                                            |")
-    println("|----------------------------------------------------------------------------|")
-    println("|                                                                            |")
-    println("|   PAYMENT DETAILS                            DEDUCTION DETAILS             |")
-    println("|                                                                            |")
-    println("|----------------------------------------------------------------------------|")
-    println("|   Salary: ${grossSalary/12}                  PAYE: ${getMonthlyPAYE()}       |")
-    println("|   Bonus: ${annualBonus/12}                             PRSI: ${getMonthlyPRSI()}       |")
-    println("|                                              Cycle To Work: $cycleToWorkSchemeMonthly          |")
-    println("|----------------------------------------------------------------------------|")
-    println("|   Gross: ${getGrossMonthlyPay()}             Total Deductions: ${getTotalMonthlyDeductions()}|")
-    println("|----------------------------------------------------------------------------|")
-    println("|                          NET PAY:    ${(getGrossPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly))}                     |")
-    println("|----------------------------------------------------------------------------|")
+    println(
+            """
+        +____________________________________________________________________+
+         Monthly Payslip:             ${firstName.uppercase()} ${surName.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+        +____________________________________________________________________+    
+              PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
+        +____________________________________________________________________+
+                   Salary: ${grossSalary/12}
+                   Bonus:  ${annualBonus/12}             
+        +____________________________________________________________________+
+              DEDUCTION DETAILS (total Deductions: ${getTotalMonthlyDeductions()})      
+        +____________________________________________________________________+
+                   PAYE: ${getMonthlyPAYE()}               
+                   PRSI: ${getMonthlyPRSI()} 
+                   Cycle To Work: $cycleToWorkSchemeMonthly        
+        +____________________________________________________________________+
+             NET PAY: ${(getGrossPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly))}
+        +____________________________________________________________________+"""
+            )
 }
 
 fun printPaySlipRounding(): Unit {
