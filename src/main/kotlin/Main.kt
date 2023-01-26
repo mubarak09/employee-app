@@ -17,22 +17,43 @@ fun getFullName() = when(gender) {
     else -> "$firstName $surName"
 }
 
-fun main(args: Array<String>) {
-    println(getFullName())
-    println("Paylist Printer")
-    printPaySlip()
+fun main(args: Array<String>){
 
-    println("\nPayslip with Rounding")
-    printPaySlipRounding()
+    var input : Int
 
-    // Call calculation functions
-
-    println("Monthly Salary: ${getMonthlySalary()}")
-    println("Monthly PAYE: ${getMonthlyPAYE()}")
-    println("Monthly PRSI: ${getMonthlyPRSI()}")
-    println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
-    println("Monthly Deductions: ${getTotalMonthlyDeductions()}")
+    do {
+        input = menu()
+        when(input) {
+            1 -> println("Monthly Salary: ${getMonthlySalary()}")
+            2 -> println("Monthly PRSI: ${getMonthlyPRSI()}")
+            3 ->println("Monthly PAYE: ${getMonthlyPAYE()}")
+            4 -> println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
+            5 -> println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
+            6 -> println("Monthly Net Pay: ${getMonthlySalary()}")
+            7 -> println(printPaySlipRounding())
+            -1 -> println("Exiting App")
+            else -> println("Invalid Option")
+        }
+        println()
+    } while (input != -1)
 }
+
+
+fun menu() : Int {
+    print("""
+         Employee Menu for ${getFullName()}
+           1. Monthly Salary
+           2. Monthly PRSI
+           3. Monthly PAYE
+           4. Monthly Gross Pay
+           5. Monthly Total Deductions
+           6. Monthly Net Pay
+           7. Full Payslip
+          -1. Exit
+         Enter Option : """)
+    return readLine()!!.toInt()
+}
+
 
 // Functions for calculations
 fun getMonthlySalary() = grossSalary/12
@@ -68,23 +89,23 @@ fun printPaySlip(): Unit {
 }
 
 fun printPaySlipRounding(): Unit {
-    println("------------------------------------------------------------------------------")
-    println("|                              Monthly Payslip                               |")
-    println("|----------------------------------------------------------------------------|")
-    println("|                                                                            |")
-    println("|   Employee Name: ${getFullName().uppercase()} (${gender.uppercase()})                Employee ID: $employeeID             |")
-    println("|                                                                            |")
-    println("|----------------------------------------------------------------------------|")
-    println("|                                                                            |")
-    println("|   PAYMENT DETAILS                            DEDUCTION DETAILS             |")
-    println("|                                                                            |")
-    println("|----------------------------------------------------------------------------|")
-    println("|   Salary: ${formatted(grossSalary/12)}                            PAYE: ${formatted(getMonthlyPAYE())}                 |")
-    println("|   Bonus: ${formatted(annualBonus/12)}                              PRSI: ${formatted(getMonthlyPRSI())}                  |")
-    println("|                                              Cycle To Work: ${formatted(cycleToWorkSchemeMonthly)}          |")
-    println("|----------------------------------------------------------------------------|")
-    println("|   Gross: ${formatted(getGrossMonthlyPay())}             Total Deductions: ${formatted(getTotalMonthlyDeductions())}                     |")
-    println("|----------------------------------------------------------------------------|")
-    println("|                          NET PAY:    ${formatted((getGrossMonthlyPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly)))}                               |")
-    println("|----------------------------------------------------------------------------|")
+    println(
+        """
+        +____________________________________________________________________+
+         Monthly Payslip:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+        +____________________________________________________________________+    
+              PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
+        +____________________________________________________________________+
+                   Salary: ${formatted(grossSalary/12)}
+                   Bonus:  ${formatted(annualBonus/12)}             
+        +____________________________________________________________________+
+              DEDUCTION DETAILS (total Deductions: ${formatted(getTotalMonthlyDeductions())})      
+        +____________________________________________________________________+
+                   PAYE: ${formatted(getMonthlyPAYE())}               
+                   PRSI: ${formatted(getMonthlyPRSI())} 
+                   Cycle To Work: $cycleToWorkSchemeMonthly        
+        +____________________________________________________________________+
+             NET PAY: ${formatted((getGrossMonthlyPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly)))}
+        +____________________________________________________________________+"""
+    )
 }
