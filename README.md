@@ -1,6 +1,8 @@
 # Employee Application
+[![Development](https://img.shields.io/badge/IntelliJ%20IDEA-000000.svg?style=for-the-badge&logo=IntelliJ-IDEA&logoColor=white)](https://www.jetbrains.com/idea/)
+[![Language](https://img.shields.io/badge/Kotlin-7F52FF.svg?style=for-the-badge&logo=Kotlin&logoColor=white)](https://kotlinlang.org/)
 
-This application was built using Intellij and the Kotlin programming langue.
+This application was built using Intellij and the Kotlin programming language.
 
 ## Description
 

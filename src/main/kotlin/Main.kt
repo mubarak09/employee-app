@@ -30,7 +30,7 @@ fun main(args: Array<String>){
             4 -> println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
             5 -> println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
             6 -> println("Monthly Net Pay: ${getMonthlySalary()}")
-            7 -> println(printPaySlipRounding())
+            7 -> println(getPaySlipRounding())
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
@@ -88,8 +88,8 @@ fun printPaySlip(): Unit {
             )
 }
 
-fun printPaySlipRounding(): Unit {
-    println(
+fun getPaySlipRounding(): String {
+    return(
         """
         +____________________________________________________________________+
          Monthly Payslip:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
