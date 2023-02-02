@@ -1,24 +1,21 @@
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-val firstName: String = "Joe"
-val surName: String = "Soap"
-val gender: Char = 'm'
-val employeeID: Int = 6143
-val grossSalary: Double = 67_543.21
-val payePercentage: Float = 38.5f
-val prsiPercentage: Float = 5.2f
-val annualBonus: Double = 1450.50
-val cycleToWorkSchemeMonthly: Double = 54.33
+import Employee
 
-fun getFullName() = when(gender) {
-    'm' -> "Mr $firstName $surName"
-    'f' -> "Ms $firstName $surName"
-    else -> "$firstName $surName"
+var employee =  Employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
+
+
+fun getFullName() = when (employee.gender){
+    'm', 'M' -> "Mr. ${employee.firstName} ${employee.surName}"
+    'f', 'F' -> "Ms.  ${employee.firstName} ${employee.surName}"
+    else ->  "${employee.firstName} ${employee.surName}"
 }
 
-fun main(args: Array<String>){
 
+fun main(args: Array<String>){
+    // Add new employee
+    add()
     var input : Int
 
     do {
@@ -56,56 +53,59 @@ fun menu() : Int {
 
 
 // Functions for calculations
-fun getMonthlySalary() = grossSalary/12
-fun getMonthlyPAYE() = (getMonthlySalary() * (payePercentage/100))
-fun getMonthlyPRSI() = (getMonthlySalary() * (prsiPercentage/100))
-fun getGrossMonthlyPay() = (getMonthlySalary() + (annualBonus /12))
-fun getTotalMonthlyDeductions() = (getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkSchemeMonthly)
+fun getMonthlySalary() = employee.grossSalary/12
+fun getMonthlyPAYE() = (getMonthlySalary() * (employee.payePercentage/100))
+fun getMonthlyPRSI() = (getMonthlySalary() * (employee.prsiPercentage/100))
+fun getGrossMonthlyPay() = (getMonthlySalary() + (employee.annualBonus /12))
+fun getTotalMonthlyDeductions() = (getMonthlyPRSI() + getMonthlyPAYE() + employee.cycleToWorkSchemeMonthly)
 
 // Function to format decimal places to 2.
 fun formatted(doubleToFormat: Double): BigDecimal? {
     return BigDecimal(doubleToFormat).setScale(2, RoundingMode.HALF_EVEN)
-}
-fun printPaySlip(): Unit {
-    println(
-            """
-        +____________________________________________________________________+
-         Monthly Payslip:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
-        +____________________________________________________________________+    
-              PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
-        +____________________________________________________________________+
-                   Salary: ${grossSalary/12}
-                   Bonus:  ${annualBonus/12}             
-        +____________________________________________________________________+
-              DEDUCTION DETAILS (total Deductions: ${getTotalMonthlyDeductions()})      
-        +____________________________________________________________________+
-                   PAYE: ${getMonthlyPAYE()}               
-                   PRSI: ${getMonthlyPRSI()} 
-                   Cycle To Work: $cycleToWorkSchemeMonthly        
-        +____________________________________________________________________+
-             NET PAY: ${(getGrossMonthlyPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly))}
-        +____________________________________________________________________+"""
-            )
 }
 
 fun getPaySlipRounding(): String {
     return(
         """
         +____________________________________________________________________+
-         Monthly Payslip:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+         Monthly Payslip:             ${getFullName().uppercase()} (${employee.gender.uppercase()}), ID: $employee.employeeID                  
         +____________________________________________________________________+    
               PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
         +____________________________________________________________________+
-                   Salary: ${formatted(grossSalary/12)}
-                   Bonus:  ${formatted(annualBonus/12)}             
+                   Salary: ${formatted(employee.grossSalary/12)}
+                   Bonus:  ${formatted(employee.annualBonus/12)}             
         +____________________________________________________________________+
               DEDUCTION DETAILS (total Deductions: ${formatted(getTotalMonthlyDeductions())})      
         +____________________________________________________________________+
                    PAYE: ${formatted(getMonthlyPAYE())}               
                    PRSI: ${formatted(getMonthlyPRSI())} 
-                   Cycle To Work: $cycleToWorkSchemeMonthly        
+                   Cycle To Work: $employee.cycleToWorkSchemeMonthly        
         +____________________________________________________________________+
-             NET PAY: ${formatted((getGrossMonthlyPay() - ((getMonthlySalary() * (prsiPercentage / 100)) + cycleToWorkSchemeMonthly)))}
+             NET PAY: ${formatted((getGrossMonthlyPay() - ((getMonthlySalary() * (employee.prsiPercentage / 100)) + employee.cycleToWorkSchemeMonthly)))}
         +____________________________________________________________________+"""
     )
 }
+
+fun add(){
+    print("Enter first name: ")
+    val firstName = readLine().toString()
+    print("Enter surname: ")
+    val surname = readLine().toString()
+    print("Enter gender (m/f): ")
+    val gender = readLine()!!.toCharArray()[0]
+    print("Enter employee ID: ")
+    val employeeID = readLine()!!.toInt()
+    print("Enter gross salary: ")
+    val grossSalary = readLine()!!.toDouble()
+    print("Enter PAYE %: ")
+    val payePercentage = readLine()!!.toDouble()
+    print("Enter PRSI %: ")
+    val prsiPercentage = readLine()!!.toDouble()
+    print("Enter Annual Bonus: ")
+    val annualBonus= readLine()!!.toDouble()
+    print("Enter Cycle to Work Deduction: ")
+    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
+
+    employee = Employee(firstName, surname, gender, employeeID, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction)
+}
+
