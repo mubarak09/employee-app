@@ -54,7 +54,10 @@ Josh Crotty
 [@Zaradin](https://github.com/Zaradin)
 
 ## Version History
-
+* 0.3
+  * Logging Capability via kotlin-logging (2.1.23)
+  * Arraylist for Many Employees
+  * Menu system rework, allows user to add, list, search and print payslips.
 * 0.2
   * Various bug fixes and optimizations
   * Added better menu system
