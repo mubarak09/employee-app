@@ -13,7 +13,7 @@ an employees Pay and Payslip.
 
 ### Dependencies
 
-* None - vanilla kotlin.
+* kotlin-logging (2.1.23)
 
 ### Installing
 
@@ -27,16 +27,14 @@ an employees Pay and Payslip.
 
 ## Basic menu for the application.
 ```
-Employee Menu for Mr Joe Soap
-           1. Monthly Salary
-           2. Monthly PRSI
-           3. Monthly PAYE
-           4. Monthly Gross Pay
-           5. Monthly Total Deductions
-           6. Monthly Net Pay
-           7. Full Payslip
-          -1. Exit
-         Enter Option : -1
+Employee Menu
+   1. Add Employee
+   2. List All Employees
+   3. Search Employees 
+   4. Print Payslip for Employee
+  -1. Exit
+       
+Enter Option :
 ```
 
 
