@@ -6,10 +6,11 @@ class Employee (var firstName: String, var surName: String, var gender: Char, va
 
     // Functions for calculations
     fun getMonthlySalary() = grossSalary/12
-    fun getMonthlyPAYE() = (getMonthlySalary() * (payePercentage/100))
     fun getMonthlyPRSI() = (getMonthlySalary() * (prsiPercentage/100))
+    fun getMonthlyPAYE() = (getMonthlySalary() * (payePercentage/100))
     fun getGrossMonthlyPay() = (getMonthlySalary() + (annualBonus /12))
     fun getTotalMonthlyDeductions() = (getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkSchemeMonthly)
+    fun getNetMonthlyPay() = formatted(getGrossMonthlyPay() - getTotalMonthlyDeductions())
 
     // Function to format decimal places to 2.
     fun formatted(doubleToFormat: Double): BigDecimal? {
@@ -43,4 +44,10 @@ class Employee (var firstName: String, var surName: String, var gender: Char, va
         'f', 'F' -> "Ms.  ${firstName} ${surName}"
         else -> "${firstName} ${surName}"
     }
+
+    override fun toString(): String {
+        return "Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeID=$employeeID, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkSchemeMonthly=$cycleToWorkSchemeMonthly)"
+    }
+
+
 }

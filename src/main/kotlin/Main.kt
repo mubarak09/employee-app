@@ -45,7 +45,8 @@ fun start() {
 }
 
 fun list(){
-    println(employees.findAll())
+    employees.findAll()
+        .forEach{ println(it) }
 }
 
 internal fun getEmployeeById(): Employee? {
