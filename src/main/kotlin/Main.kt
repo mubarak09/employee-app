@@ -2,18 +2,22 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 import Employee
+import mu.KotlinLogging
 
 //Globol Variable for holding employees
 var employees = EmployeeAPI()
 
+val logger = KotlinLogging.logger {}
 
 
 fun main(args: Array<String>){
+    logger.info { "Launching Employee App" }
     start()
 }
 
 
 fun menu() : Int {
+    logger.info { "Printing Menu" }
     print(""" 
          |Employee Menu
          |   1. Add Employee
@@ -65,6 +69,7 @@ fun search() {
 }
 
 fun paySlip(){
+    logger.info { "Printing Employee Payslip" }
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPaySlipRounding())
