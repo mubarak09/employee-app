@@ -37,4 +37,8 @@ class EmployeeAPI {
             """.trimMargin())
         }
     }
+
+    fun editEmployee(){
+
+    }
 }

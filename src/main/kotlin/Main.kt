@@ -44,7 +44,7 @@ fun start() {
             3 -> search()
             4 -> paySlip()
             5 -> employees.highestPaidEmployees()
-            6 -> TODO()
+            6 -> employees.editEmployee()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
