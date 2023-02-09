@@ -24,6 +24,9 @@ fun menu() : Int {
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
+         |   -----------------------------
+         |   5. Highest paid Employees
+         |   6. Edit Employee Details
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())
@@ -40,6 +43,8 @@ fun start() {
             2 -> list()
             3 -> search()
             4 -> paySlip()
+            5 -> employees.highestPaidEmployees()
+            6 -> TODO()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
@@ -73,6 +78,11 @@ fun paySlip(){
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPaySlipRounding())
+}
+
+fun editEmployeeInfo(){
+    println("Please enter the ID of the employee you would like to amend: ")
+    var empID = readLine()
 }
 
 fun dummyData() {
