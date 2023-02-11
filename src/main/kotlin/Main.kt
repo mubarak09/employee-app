@@ -19,14 +19,17 @@ fun main(args: Array<String>){
 fun menu() : Int {
     logger.info { "Printing Menu" }
     print(""" 
-         |Employee Menu
+         |  ** Employee Menu System (Made By Josh Crotty) **
          |   1. Add Employee
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
          |   -----------------------------
+         |     ** Extra Functionality **
+         |   -----------------------------
          |   5. Highest paid Employees
          |   6. Edit Employee Details
+         |   7. Delete an Employee by ID
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())
@@ -45,6 +48,7 @@ fun start() {
             4 -> paySlip()
             5 -> employees.highestPaidEmployees()
             6 -> employees.editEmployee()
+            7 -> deleteEmployee()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
@@ -78,6 +82,22 @@ fun paySlip(){
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPaySlipRounding())
+}
+
+fun deleteEmployee(){
+    logger.info { "Delete employee by ID" }
+
+    println("*List of employees*")
+    employees.findAll()
+        .forEach{ println("""
+            ID: ${it.employeeID}
+            Name: ${it.getFullName()}
+        """.trimIndent())}
+
+    println("Please enter the ID of the employee you would like to remove: ")
+
+    var empID = readln().toInt()
+    employees.deleteEmployeeByID(empID)
 }
 
 fun editEmployeeInfo(){

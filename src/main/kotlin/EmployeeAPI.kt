@@ -25,6 +25,7 @@ class EmployeeAPI {
 
     // Assignment added functionality for highest paid employees
     fun highestPaidEmployees(): Unit {
+        logger.info { "sorting employees by gross salary" }
 
         // Sort the Employee arraylist using lamdas
         var sortedList = employees.sortedByDescending {it.grossSalary }
@@ -40,5 +41,15 @@ class EmployeeAPI {
 
     fun editEmployee(){
 
+    }
+
+    fun deleteEmployeeByID(empID: Int){
+        logger.info { "Looping through employee arraylist and removing by ID" }
+        for(emp in employees){
+            if(emp.employeeID == empID){
+                employees.remove(emp)
+                return
+            }
+        }
     }
 }
