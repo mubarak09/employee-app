@@ -30,6 +30,7 @@ fun menu() : Int {
          |   5. Highest paid Employees
          |   6. Edit Employee Details
          |   7. Delete an Employee by ID
+         |   -99 Import dummy data
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())

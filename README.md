@@ -9,6 +9,9 @@ This application was built using Intellij and the Kotlin programming language.
 As part of our Software Development Tools we were tasked with building a basic application with Kotlin that calculated and printed
 an employees Pay and Payslip.
 
+With added functionality such as editing, deleting and sorting employees that are in the arraylist.
+The menu system was also reworked with the developer in the title of the menu.
+
 ## Getting Started
 
 ### Dependencies
@@ -27,14 +30,19 @@ an employees Pay and Payslip.
 
 ## Basic menu for the application.
 ```
-Employee Menu
+** Employee Menu System (Made By Josh Crotty) **
    1. Add Employee
    2. List All Employees
    3. Search Employees 
    4. Print Payslip for Employee
+   -----------------------------
+     ** Extra Functionality **
+   -----------------------------
+   5. Highest paid Employees
+   6. Edit Employee Details
+   7. Delete an Employee by ID
+   -99 Import dummy data
   -1. Exit
-       
-Enter Option :
 ```
 
 
@@ -52,6 +60,13 @@ Josh Crotty
 [@Zaradin](https://github.com/Zaradin)
 
 ## Version History
+* 0.5
+  * Implemented functionality for editing employees details such as (Name, Gross Salary, Bonuses)
+  * Menu option for importing dummy data
+* 0.4
+  * Updated menu with a clean fresher look and more functionality
+  * Delete employees from arraylist
+  * More logging for better debugging
 * 0.3
   * Logging Capability via kotlin-logging (2.1.23)
   * Arraylist for Many Employees
