@@ -47,7 +47,7 @@ fun start() {
             3 -> search()
             4 -> paySlip()
             5 -> employees.highestPaidEmployees()
-            6 -> employees.editEmployee()
+            6 -> editEmployeeInfo()
             7 -> deleteEmployee()
             -99 -> dummyData()
             -1 -> println("Exiting App")
@@ -97,17 +97,30 @@ fun deleteEmployee(){
     println("Please enter the ID of the employee you would like to remove: ")
 
     var empID = readln().toInt()
+
+    add()
     employees.deleteEmployeeByID(empID)
 }
 
+// Edit employees information
 fun editEmployeeInfo(){
-    println("Please enter the ID of the employee you would like to amend: ")
-    var empID = readLine()
+    // List employees with thier ID and Name so the user can pick an optin to edit
+    println("*List of employees*")
+    employees.findAll()
+        .forEach{ println("""
+            ID: ${it.employeeID}
+            Name: ${it.getFullName()}
+            -----------------------------
+        """.trimIndent())}
+
+    // Call API function to make the changes
+    employees.editEmployee()
 }
 
 fun dummyData() {
     employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
     employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
+    employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
     employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
 }
 
