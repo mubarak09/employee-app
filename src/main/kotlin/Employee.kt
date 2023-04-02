@@ -21,7 +21,7 @@ class Employee (var firstName: String, var surName: String, var gender: Char, va
         return(
                 """
         +____________________________________________________________________+
-         Monthly Paysli:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+         Monthly Payslip:             ${getFullName().uppercase()} (${gender.uppercase()}), ID: $employeeID                  
         +____________________________________________________________________+    
               PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
         +____________________________________________________________________+
